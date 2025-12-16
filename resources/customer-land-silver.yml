@@ -1,0 +1,23 @@
+resources:
+  jobs:
+    Customer_landing_to_silver_table:
+      name: Customer landing to silver table
+      tasks:
+        - task_key: customers_landing_to_bronze
+          notebook_task:
+            notebook_path: /Workspace/Users/charansairangasthalam1985@gmail.com/notebooks/landing
+              to bronze
+            base_parameters:
+              file_name: customers
+              bronze_table_name: customers_stg
+            source: WORKSPACE
+        - task_key: customers_bronze_to_silver
+          depends_on:
+            - task_key: customers_landing_to_bronze
+          notebook_task:
+            notebook_path: /Workspace/Users/charansairangasthalam1985@gmail.com/notebooks/customers
+              bronze to silver
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
