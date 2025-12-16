@@ -1,0 +1,15 @@
+resources:
+  jobs:
+    hello_job:
+      name: hello_job
+      tasks:
+      
+        - task_key: hello_task
+          notebook_task:
+            notebook_path: notebooks/hello
+
+        - task_key: second_task
+          depends_on:
+            - task_key: hello_task
+          notebook_task:
+            notebook_path: notebooks/second
