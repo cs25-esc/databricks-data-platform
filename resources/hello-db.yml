@@ -5,9 +5,9 @@ resources:
       tasks:
         - task_key: hello_task
           notebook_task:
-            notebook_path: ../notebooks/hello
+            notebook_path: ../notebooks/hello.py
         - task_key: second_task
           depends_on:
             - task_key: hello_task
           notebook_task:
-            notebook_path: ../notebooks/second
+            notebook_path: ../notebooks/second.py
