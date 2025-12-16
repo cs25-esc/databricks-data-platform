@@ -1,0 +1,7 @@
+bundle:
+  name: databricks-data-platform
+
+targets:
+  default:
+    workspace:
+      host: https://dbc-4bc82a96-9d50.cloud.databricks.com
