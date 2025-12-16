@@ -1,6 +1,9 @@
 bundle:
   name: databricks-data-platform
 
+include:
+  - resources/*.yml
+
 targets:
   default:
     workspace:
