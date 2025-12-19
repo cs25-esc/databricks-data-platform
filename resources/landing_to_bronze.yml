@@ -1,0 +1,11 @@
+resources:
+  jobs:
+    landing_to_job:
+      name: landing_to_job
+      tasks:
+        - task_key: landing_to_task
+          notebook_task:
+            notebook_path: /notebooks/landing_to_bronzenb.py
+            base_parameters:
+                file_name: customers
+                bronze_table_name: customers_stg  
