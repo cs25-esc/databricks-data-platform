@@ -3,6 +3,12 @@
 import sys
 print("\n".join(sys.path))
 
+file_name = dbutils.widgets.get("file_name")
+bronze_table_name = dbutils.widgets.get("bronze_table_name")
+
+
+print(file_name, bronze_table_name)
+
 from python_files.utils3 import *
 from pyspark.sql.functions import *
 from pyspark.sql.window import *
@@ -10,11 +16,7 @@ from pyspark.sql.window import *
 dbutils.widgets.text("file_name", "")
 dbutils.widgets.text("bronze_table_name", "")
 
-file_name = dbutils.widgets.get("file_name")
-bronze_table_name = dbutils.widgets.get("bronze_table_name")
 
-
-print(file_name, bronze_table_name)
 
 landing_path = f"/Volumes/training_catalog/autoloader_demo/landing_volume/{file_name}/"
 schema_location = f"/Volumes/training_catalog/autoloader_demo/schema_checkpoint_volume/{file_name}/schema_location/"
