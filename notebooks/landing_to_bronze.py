@@ -1,7 +1,9 @@
 # Databricks notebook source
 
-import sys
-print("\n".join(sys.path))
+from pyspark.sql.functions import *
+from pyspark.sql.window import *
+
+%run /Workspace/Users/charansairangasthalam1985@gmail.com/.bundle/databricks-data-platform/default/files/notebooks/lb_utilities
 
 file_name = dbutils.widgets.get("file_name")
 bronze_table_name = dbutils.widgets.get("bronze_table_name")
@@ -9,9 +11,7 @@ bronze_table_name = dbutils.widgets.get("bronze_table_name")
 
 print(file_name, bronze_table_name)
 
-from python_files.utils3 import *
-from pyspark.sql.functions import *
-from pyspark.sql.window import *
+
 
 dbutils.widgets.text("file_name", "")
 dbutils.widgets.text("bronze_table_name", "")
