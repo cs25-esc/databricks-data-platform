@@ -1,7 +1,6 @@
 # Databricks notebook source
 
-%sql
-
+spark.sql("""
 CREATE OR REPLACE TEMP VIEW temp_customer_delta AS
   SELECT *
   FROM training_catalog.bronze.customers_stg
@@ -35,12 +34,13 @@ CREATE OR REPLACE TEMP VIEW temp_customer_delta AS
     current_timestamp(),
     null
   FROM temp_customer_delta;
+""")
 
 
-%sql
-  UPDATE training_catalog.default.control_log_status
+spark.sql("""  UPDATE training_catalog.default.control_log_status
   SET
     last_successful_run = current_timestamp(),
     status = 'SUCCESS',
     updated_ts = current_timestamp()
-  WHERE job_id = 1;
+  WHERE job_id = 1;""")
+
