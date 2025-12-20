@@ -1,3 +1,5 @@
+# Databricks notebook source
+
 %run /Workspace/Users/charansairangasthalam1985@gmail.com/.bundle/databricks-data-platform/default/files/notebooks/lb_utilities
 
 %pip install pytest chispa
