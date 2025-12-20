@@ -1,6 +1,9 @@
+%run /Workspace/Users/charansairangasthalam1985@gmail.com/.bundle/databricks-data-platform/default/files/notebooks/lb_utilities
+
+%pip install pytest chispa
+
 import pytest
 from pyspark.sql import SparkSession
-from python_files.utils3 import add_loadts
 from chispa.schema_comparer import assert_schema_equality
 
 

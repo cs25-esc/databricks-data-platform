@@ -4,6 +4,5 @@ resources:
       name: unit_tests
       tasks:
         - task_key: run_pytests
-          spark_python_task:
-            python_file: ../src/tests/utils3_test.py
-          job_cluster_key: test_cluster
+          notebook_task:
+            notebook_path: ../notebooks/pytests_nb.py
