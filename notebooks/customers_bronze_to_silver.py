@@ -12,8 +12,9 @@ CREATE OR REPLACE TEMP VIEW temp_customer_delta AS
   QUALIFY ROW_NUMBER() OVER (
       PARTITION BY customer_id
       ORDER BY load_ts DESC
-  ) = 1;
+  ) = 1;""")
 
+spark.sql("""
   MERGE INTO training_catalog.silver.customers_dim tgt
   USING temp_customer_delta src
   ON tgt.customer_id = src.customer_id
