@@ -1,18 +1,30 @@
-from python_files.utils3 import *
-from pyspark.sql.functions import *
 import pytest
+from pyspark.sql import SparkSession
+from python_files.utils3 import add_loadts
 from chispa.schema_comparer import assert_schema_equality
 
 
-@pytest.fixture(scope = "session")
-def sparkSession():
-    return sparkSession.getOrCreate()
+@pytest.fixture(scope="session")
+def spark():
+    return (
+        SparkSession.builder
+        .master("local[1]")
+        .appName("pytest-spark")
+        .getOrCreate()
+    )
 
 
-def test_add_loadts(spark):
-    sample_df = spark.createDataFrame([(1,"charan") , (2, "pavan")], "id int, name string")
-    correct_df = spark.createDataFrame([(1,"charan", current_timestamp()) , (2, "pavan", current_timestamp())], "id int, name string, load_ts timestamp")
+def test_add_loadts_schema(spark):
+    sample_df = spark.createDataFrame(
+        [(1, "charan"), (2, "pavan")],
+        "id int, name string"
+    )
 
-    assert_schema_equality(add_loadts(sample_df), correct_df)
+    result_df = add_loadts(sample_df)
 
+    expected_df = spark.createDataFrame(
+        [(1, "charan", None), (2, "pavan", None)],
+        "id int, name string, load_ts timestamp"
+    )
 
+    assert_schema_equality(result_df.schema, expected_df.schema)
