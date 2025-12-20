@@ -23,7 +23,9 @@ spark.sql("""
     UPDATE SET
       tgt.is_current = false,
       tgt.end_ts = current_timestamp();
+          """)
 
+spark.sql("""
   INSERT INTO training_catalog.silver.customers_dim
   SELECT
     customer_id,
