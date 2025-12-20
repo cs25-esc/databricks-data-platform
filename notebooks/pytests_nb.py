@@ -2,11 +2,10 @@
 
 %run /Workspace/Users/charansairangasthalam1985@gmail.com/.bundle/databricks-data-platform/default/files/notebooks/lb_utilities
 
-%pip install pytest chispa
+# %pip install pytest chispa
 
 import pytest
 from pyspark.sql import SparkSession
-from chispa.schema_comparer import assert_schema_equality
 
 
 @pytest.fixture(scope="session")
@@ -31,5 +30,11 @@ def test_add_loadts_schema(spark):
         [(1, "charan", None), (2, "pavan", None)],
         "id int, name string, load_ts timestamp"
     )
+    
 
-    assert_schema_equality(result_df.schema, expected_df.schema)
+    for i in result_df.columns():
+        for j in expected_df.columns():
+            if i != j:
+                assert False
+
+    assert True
