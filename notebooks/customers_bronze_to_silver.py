@@ -1,4 +1,5 @@
-  
+# Databricks notebook source
+
 %sql
 
 CREATE OR REPLACE TEMP VIEW temp_customer_delta AS
