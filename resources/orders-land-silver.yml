@@ -5,19 +5,15 @@ resources:
       tasks:
         - task_key: orders_landing_to_bronze
           notebook_task:
-            notebook_path: /Workspace/Users/charansairangasthalam1985@gmail.com/notebooks/landing
-              to bronze
+            notebook_path: ../notebooks/landing_to_bronze.py
             base_parameters:
               file_name: orders
               bronze_table_name: orders_stg
-            source: WORKSPACE
         - task_key: orders_bronze_to_silver
           depends_on:
             - task_key: orders_landing_to_bronze
           notebook_task:
-            notebook_path: /Workspace/Users/charansairangasthalam1985@gmail.com/notebooks/orders
-              bronze to silver
-            source: WORKSPACE
+            notebook_path: ../notebooks/orders_bronze_to_silver.py
       queue:
         enabled: true
       performance_target: PERFORMANCE_OPTIMIZED
