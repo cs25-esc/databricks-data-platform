@@ -31,6 +31,11 @@ before_insertions = spark.sql(f"""
                             select count(1) from {target_bronze_table};
                             """)
 
+a = before_insertions.collect()[0][0]
+
+print(f"count before: {a}")
+
+
 if schema_evolution_flag.lower() == "true":
 
     df_bronze_stream  = spark.readStream.format("cloudFiles")\
@@ -71,11 +76,10 @@ after_insertions = spark.sql(f"""
                             select count(1) from {target_bronze_table};
                             """)
 
-inserted_count = (
-    after_insertions.collect()[0][0]
-    - before_insertions.collect()[0][0]
-)
+b = after_insertions.collect()[0][0]
+     
+print(f"count after: {b}")
 
 print(
-    f"number of records inserted into bronze table {target_bronze_table} is: {inserted_count}"
+    f"number of records inserted into bronze table {target_bronze_table} is: {b-a}"
 )
