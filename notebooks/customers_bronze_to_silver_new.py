@@ -36,30 +36,26 @@ WHEN MATCHED AND tgt.hash_value <> src.hash_value THEN
   UPDATE SET
     tgt.is_current = false,
     tgt.end_ts = current_timestamp()
+""")
 
-WHEN NOT MATCHED THEN
-  INSERT (
-    customer_id,
-    first_name,
-    last_name,
-    email,
-    hash_value,
-    is_current,
-    start_ts,
-    end_ts
-  )
-  VALUES (
-    src.customer_id,
-    src.first_name,
-    src.last_name,
-    src.email,
-    src.hash_value,
+#insert
+spark.sql("""
+INSERT INTO training_catalog.silver.customers_dim
+SELECT 
+    v.customer_id,
+    v.first_name,
+    v.last_name,
+    v.email,
+    v.hash_value,
     true,
     current_timestamp(),
     null
-  );
-
-          """)
+FROM df_bronze_hash_vw v
+LEFT JOIN training_catalog.silver.customers_dim d
+ON v.customer_id = d.customer_id 
+AND d.is_current() is true
+AND (h.hash_value <> d.hash_value OR d.customer_id is null)
+""")
 
 
 spark.sql("""  UPDATE training_catalog.default.control_log_status
