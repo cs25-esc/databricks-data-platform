@@ -1,6 +1,6 @@
 # Databricks notebook source
 
-spark.sql("""%sql
+spark.sql("""
 Insert into training_catalog.silver.orders_fact
 (
   order_id,
