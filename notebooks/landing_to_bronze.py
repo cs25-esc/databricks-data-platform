@@ -66,11 +66,15 @@ print(target_bronze_table)
 
 
 
-df_bronze_stream.writeStream\
-    .format("delta")\
-    .option("checkpointLocation", checkpoint_location)\
-    .trigger(once=True)\
-    .toTable(target_bronze_table)
+query = (
+    df_bronze_stream.writeStream
+        .format("delta")
+        .option("checkpointLocation", checkpoint_location)
+        .trigger(once=True)
+        .toTable(target_bronze_table)
+)
+
+query.awaitTermination()
 
 after_insertions = spark.sql(f"""
                             select count(1) from {target_bronze_table};
