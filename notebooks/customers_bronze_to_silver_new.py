@@ -47,10 +47,10 @@ SELECT
     v.last_name,
     v.email,
     v.signup_date,      
-    v.hash_value,
     true,
     current_timestamp(),
-    null
+    null,
+    v.hash_value
 FROM df_bronze_hash_vw v
 LEFT JOIN training_catalog.silver.customers_dim d
 ON v.customer_id = d.customer_id 
