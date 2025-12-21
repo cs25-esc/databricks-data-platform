@@ -46,6 +46,7 @@ SELECT
     v.first_name,
     v.last_name,
     v.email,
+    v.signup_date,      
     v.hash_value,
     true,
     current_timestamp(),
