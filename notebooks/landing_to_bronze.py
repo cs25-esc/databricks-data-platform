@@ -55,7 +55,7 @@ for column in df_bronze_stream.columns:
     if "date" in column:
         df_bronze_stream = df_bronze_stream.withColumn(column, to_date(column))
 
-df_bronze_stream = df_bronze_stream.withColumn("source_file" , input_file_name())
+df_bronze_stream = df_bronze_stream.withColumn("source_file" , col("_metadata.file_path"))
 
 print(target_bronze_table)
 
