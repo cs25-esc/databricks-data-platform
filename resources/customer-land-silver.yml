@@ -9,6 +9,7 @@ resources:
             base_parameters:
               file_name: customers
               bronze_table_name: customers_stg
+              schema_evolution_flag: true
         - task_key: customers_bronze_to_silver
           depends_on:
             - task_key: customers_landing_to_bronze
