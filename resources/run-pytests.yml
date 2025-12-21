@@ -1,0 +1,8 @@
+resources:
+  jobs:
+    unit_tests:
+      name: unit_tests
+      tasks:
+        - task_key: run_pytests
+          notebook_task:
+            notebook_path: ../notebooks/pytests_nb.py
