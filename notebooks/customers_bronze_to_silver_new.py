@@ -23,7 +23,7 @@ df_bronze_hash = add_hash_column(df_bronze, ["first_name","last_name", "email", 
 
 df_bronze_hash.createOrReplaceTempView("df_bronze_hash_vw")
 
-display(spark.table('df_bronze_hash_vw').head(2))
+display(spark.table('df_bronze_hash_vw').limit(2))
 
 
 spark.sql("""
