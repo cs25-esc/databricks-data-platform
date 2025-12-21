@@ -53,7 +53,7 @@ SELECT
 FROM df_bronze_hash_vw v
 LEFT JOIN training_catalog.silver.customers_dim d
 ON v.customer_id = d.customer_id 
-AND d.is_current() is true
+AND d.is_current is true
 AND (h.hash_value <> d.hash_value OR d.customer_id is null)
 """)
 
