@@ -43,7 +43,7 @@ WHEN NOT MATCHED THEN
     first_name,
     last_name,
     email,
-    hash_val,
+    hash_value,
     is_current,
     start_ts,
     end_ts
@@ -53,7 +53,7 @@ WHEN NOT MATCHED THEN
     src.first_name,
     src.last_name,
     src.email,
-    src.hash_val,
+    src.hash_value,
     true,
     current_timestamp(),
     null
