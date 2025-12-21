@@ -1,6 +1,6 @@
 resources:
   jobs:
-    Customer_landing_to_silver_table:
+    Customer_landing_to_silver_table_new:
       name: Customer landing to silver table new merge
       tasks:
         - task_key: customers_landing_to_bronze
