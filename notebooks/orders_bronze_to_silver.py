@@ -27,6 +27,7 @@ Insert into training_catalog.silver.orders_fact
     FROM training_catalog.default.control_log_status
     WHERE job_id = 2
 )
+QUALIFY ROW_NUMBER() OVER(PARTITION BY order_id ORDER BY load_ts DESC) == 1
 );
 """)
 
